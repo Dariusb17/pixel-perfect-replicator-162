@@ -235,8 +235,8 @@ function Hero({ name, phone, city, rating, photo1 }) {
         <div className="relative min-h-[560px] md:min-h-[640px]">
           <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
             <SafeImg
-              src={electricianAbout}
-              fallback={electricianAbout}
+              src={photo1 || electricianHero}
+              fallback={electricianHero}
               alt="Electrician la lucru"
               className="absolute inset-0 h-full w-full object-cover"
             />
