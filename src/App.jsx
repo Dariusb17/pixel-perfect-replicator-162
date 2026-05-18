@@ -3,6 +3,7 @@ import electricianAbout from "@/assets/electrician-about.jpg";
 import electricianProcess from "@/assets/electrician-process.jpg";
 import electricianServices from "@/assets/electrician-services.jpg";
 import electricianUrgent from "@/assets/electrician-urgent.jpg";
+import electricianHero from "@/assets/electrician-hero.jpg";
 
 function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
   const ref = useRef(null);
@@ -233,8 +234,8 @@ function Hero({ name, phone, city, rating, photo1 }) {
         <div className="relative min-h-[560px] md:min-h-[640px]">
           <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
             <SafeImg
-              src={electricianAbout}
-              fallback={electricianAbout}
+              src={electricianHero}
+              fallback={electricianHero}
               alt="Electrician la lucru"
               className="absolute inset-0 h-full w-full object-cover"
             />
