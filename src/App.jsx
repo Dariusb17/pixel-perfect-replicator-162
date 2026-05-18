@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import electricianAbout from "@/assets/electrician-about.jpg";
+import electricianProcess from "@/assets/electrician-process.jpg";
 
 function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
   const ref = useRef(null);
@@ -428,8 +429,8 @@ function Process({ photo3 }) {
         </div>
         <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
           <SafeImg
-            src={photo3}
-            fallback={STOCK.process}
+            src={electricianProcess}
+            fallback={electricianProcess}
             alt="Procesul de lucru"
             className="h-[300px] w-full rounded-2xl object-cover md:h-[460px]"
           />
