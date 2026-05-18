@@ -363,36 +363,52 @@ function Stars() {
 
 function Reviews({ name, reviews }) {
   const items = [
-    { text: "Promptitudine și profesionalism. Au rezolvat scurtcircuitul în 30 de minute.", who: "Ion Popescu", role: "Proprietar casă" },
-    { text: "Mentenanța anuală la birouri a fost realizată impecabil și conform normelor.", who: "Maria Ionescu", role: "Manager firmă" },
-    { text: "Colaborez cu ei la proiecte rezidențiale de lux. Execuție perfectă.", who: "Andrei Dobre", role: "Architect" },
+    {
+      text: "Promptitudine și profesionalism. Au rezolvat scurtcircuitul în 30 de minute.",
+      who: "Ion Popescu",
+      role: "Proprietar casă",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+    },
+    {
+      text: "Mentenanța anuală la birouri a fost realizată impecabil și conform normelor.",
+      who: "Maria Ionescu",
+      role: "Manager firmă",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+    },
+    {
+      text: "Colaborez cu ei la proiecte rezidențiale de lux. Execuție perfectă.",
+      who: "Andrei Dobre",
+      role: "Architect",
+      avatar: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+    },
   ];
   return (
     <section className="px-4 py-20">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+        <Reveal as="h2" className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
           Ce spun clienții<br />noștri
-        </h2>
-        <p className="mx-auto mt-4 max-w-md text-base text-slate-600">
+        </Reveal>
+        <Reveal delay={120} as="p" className="mx-auto mt-4 max-w-md text-base text-slate-600">
           Peste {reviews} de clienți mulțumiți de serviciile {name}.
-        </p>
+        </Reveal>
         <div className="mt-10 space-y-5 text-left">
           {items.map((r, i) => (
-            <div key={i} className="rounded-3xl border border-white bg-white/90 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+            <Reveal key={i} delay={i * 100} className="rounded-3xl border border-white bg-white/90 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
               <Stars />
               <p className="mt-4 text-sm leading-relaxed text-slate-600">{r.text}</p>
               <div className="mt-5 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                    <path d="M7 7h4v4H8c0 2 1 3 3 3v2c-3 0-5-2-5-5V7zm8 0h4v4h-3c0 2 1 3 3 3v2c-3 0-5-2-5-5V7z" />
-                  </svg>
-                </div>
+                <SafeImg
+                  src={r.avatar}
+                  fallback={r.avatar}
+                  alt={r.who}
+                  className="h-11 w-11 rounded-full object-cover ring-2 ring-white shadow-sm"
+                />
                 <div>
                   <p className="text-sm font-semibold text-ink">{r.who}</p>
                   <p className="text-xs text-slate-500">{r.role}</p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
