@@ -253,7 +253,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
             {rating ? (
               <Reveal delay={1200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
             ) : null}
-            <Reveal delay={1300} className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3 animate-fade-in" style={{ animationDuration: "700ms" }}>
               <a
                 href={tel ? `tel:${tel}` : "#contact"}
                 className="pulse-glow rounded-full bg-brand px-6 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-brand-dark"
@@ -266,7 +266,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
               >
                 Vezi serviciile
               </a>
-            </Reveal>
+            </div>
           </div>
         </div>
       </div>
