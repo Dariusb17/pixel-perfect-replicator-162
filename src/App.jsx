@@ -467,9 +467,9 @@ function Reviews({ name, reviews }) {
   const items = [
     {
       text: "Promptitudine și profesionalism. Au rezolvat scurtcircuitul în 30 de minute.",
-      who: "Ion Popescu",
+      who: "Andrei Moldovan",
       role: "Proprietar casă",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
     },
     {
       text: "Mentenanța anuală la birouri a fost realizată impecabil și conform normelor.",
