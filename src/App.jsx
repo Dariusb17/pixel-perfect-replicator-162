@@ -327,39 +327,53 @@ function Services({ phone, photo2 }) {
   const tel = digits(phone);
   return (
     <section id="servicii" className="px-4 py-20">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-          Servicii Electrice<br />Complete
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base text-slate-600">
-          Soluții profesionale pentru orice problemă electrică, rezidențială sau comercială.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <a
-            href={tel ? `tel:${tel}` : "#contact"}
-            className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-brand-dark"
-          >
-            Contactați-ne
-          </a>
-          <a
-            href={tel ? `https://wa.me/${tel}` : "#contact"}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-[#1ebe5d]"
-          >
-            WhatsApp
-          </a>
+      <div className="mx-auto max-w-6xl">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+            Servicii Electrice Complete
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base text-slate-600">
+            Soluții profesionale pentru orice problemă electrică, rezidențială sau comercială.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <a
+              href={tel ? `tel:${tel}` : "#contact"}
+              className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-brand-dark"
+            >
+              Contactați-ne
+            </a>
+            <a
+              href={tel ? `https://wa.me/${tel}` : "#contact"}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-[#1ebe5d]"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
-        <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
-          <SafeImg
-            src={electricianServices}
-            fallback={electricianServices}
-            alt="Instalații electrice"
-            className="h-[300px] w-full rounded-2xl object-cover"
-          />
-          <div className="p-5">
-            <h3 className="text-xl font-semibold text-ink">Instalații Electrice</h3>
-            <p className="mt-2 text-sm text-slate-500">Execuție instalații noi pe normele de siguranță.</p>
+        <div className="mt-10 -mx-4 overflow-x-auto px-4 pb-4 [scrollbar-width:thin]">
+          <div className="flex snap-x snap-mandatory gap-5">
+            {[
+              { title: "Instalații Electrice", desc: "Execuție instalații noi pentru case și birouri, respectând normele de siguranță.", img: electricianServices },
+              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=80" },
+              { title: "Mentenanță", desc: "Verificări periodice pentru a preveni incidentele și pentru a optimiza consumul.", img: electricianProcess },
+              { title: "Automatizări", desc: "Integrare sisteme inteligente pentru controlul iluminatului și eficiență energetică.", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80" },
+              { title: "Iluminat Exterior", desc: "Montaj sisteme de iluminat pentru grădini, fațade și spații comerciale.", img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=80" },
+            ].map((s, i) => (
+              <div key={i} className="w-[280px] flex-none snap-start overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] md:w-[320px]">
+                <SafeImg
+                  src={s.img}
+                  fallback={s.img}
+                  alt={s.title}
+                  className="h-[220px] w-full rounded-2xl object-cover md:h-[260px]"
+                />
+                <div className="p-5">
+                  <h3 className="text-xl font-semibold text-ink">{s.title}</h3>
+                  <p className="mt-2 text-sm text-slate-500">{s.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
