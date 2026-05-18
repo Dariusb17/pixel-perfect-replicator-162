@@ -169,6 +169,7 @@ function useParams() {
       photo1: get("photo1"),
       photo2: get("photo2"),
       photo3: get("photo3"),
+      photo4: get("photo4"),
     };
   }, []);
 }
