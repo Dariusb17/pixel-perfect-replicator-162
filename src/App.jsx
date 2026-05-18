@@ -357,9 +357,9 @@ function Services({ phone, photo2 }) {
           <div className="flex snap-x snap-mandatory gap-5">
             {[
               { title: "Instalații Electrice", desc: "Execuție instalații noi pentru case și birouri, respectând normele de siguranță.", img: electricianServices },
-              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: electricianUrgent },
               { title: "Mentenanță", desc: "Verificări periodice pentru a preveni incidentele și pentru a optimiza consumul.", img: electricianProcess },
               { title: "Automatizări", desc: "Integrare sisteme inteligente pentru controlul iluminatului și eficiență energetică.", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80" },
+              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: electricianUrgent },
               { title: "Iluminat Exterior", desc: "Montaj sisteme de iluminat pentru grădini, fațade și spații comerciale.", img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=80" },
             ].map((s, i) => (
               <div key={i} className="w-[280px] flex-none snap-start overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] md:w-[320px]">
