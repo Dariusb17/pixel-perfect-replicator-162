@@ -536,7 +536,7 @@ function FAQItem({ q, a }) {
 function FAQ({ city }) {
   const faqs = [
     { q: "Interveniți în weekend?", a: "Da, oferim intervenții și în weekend, 24/7 pentru urgențe electrice." },
-    { q: "Ce zone acoperiți?", a: city ? `Acoperim zona ${city} și împrejurimi.` : "Acoperim zona dumneavoastră și împrejurimi." },
+    { q: "Ce zone acoperiți?", a: city ? `Oferim servicii în toată zona ${city}.` : "Oferim servicii în toată zona dumneavoastră." },
     { q: "Oferiți factură?", a: "Da, emitem factură fiscală pentru toate lucrările efectuate." },
   ];
   return (
