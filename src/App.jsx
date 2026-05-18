@@ -471,11 +471,18 @@ function Process({ photo3 }) {
         </div>
         <div className="mt-6 grid grid-cols-1 gap-5 text-left sm:grid-cols-2 md:grid-cols-4">
           {steps.map((s) => (
-            <div key={s.n} className="rounded-3xl border border-white bg-white/90 p-7 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">{s.n}</div>
-              <h3 className="mt-5 text-xl font-semibold text-ink">{s.title}</h3>
+            <div
+              key={s.n}
+              className="group relative overflow-hidden rounded-3xl border border-white bg-white/90 p-7 shadow-[0_8px_30px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-2 hover:border-brand/30 hover:shadow-[0_20px_50px_rgba(37,99,235,0.18)]"
+            >
+              <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-brand-soft/0 via-brand-soft/0 to-brand-soft/0 opacity-0 transition-opacity duration-500 group-hover:from-brand-soft/60 group-hover:via-white group-hover:to-indigo-100/60 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br from-brand to-indigo-500 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-30" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-brand to-brand-dark text-sm font-semibold text-white shadow-md transition-all duration-500 group-hover:scale-110 group-hover:from-indigo-500 group-hover:to-brand group-hover:shadow-[0_8px_20px_rgba(37,99,235,0.45)]">
+                {s.n}
+              </div>
+              <h3 className="mt-5 text-xl font-semibold text-ink transition-colors duration-300 group-hover:text-brand-dark">{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">{s.desc}</p>
-              <div className="mt-6 h-px w-full bg-slate-200" />
+              <div className="mt-6 h-px w-full bg-slate-200 transition-all duration-500 group-hover:bg-gradient-to-r group-hover:from-brand group-hover:via-indigo-400 group-hover:to-transparent" />
             </div>
           ))}
         </div>
