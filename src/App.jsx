@@ -275,7 +275,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
   );
 }
 
-function About({ name, about, city }) {
+function About({ name, about, city, photo2 }) {
   const location = city ? (
     <>
       <strong className="font-semibold text-ink">{city}</strong>, România
