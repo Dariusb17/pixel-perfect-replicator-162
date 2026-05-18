@@ -517,14 +517,14 @@ function Reviews({ name, reviews }) {
   ];
   return (
     <section className="px-4 py-20">
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-6xl text-center">
         <Reveal as="h2" className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-          Ce spun clienții<br />noștri
+          Ce spun clienții noștri
         </Reveal>
         <Reveal delay={120} as="p" className="mx-auto mt-4 max-w-md text-base text-slate-600">
           Peste {reviews} de clienți mulțumiți de serviciile {name}.
         </Reveal>
-        <div className="mt-10 space-y-5 text-left">
+        <div className="mt-10 grid gap-5 text-left md:grid-cols-3">
           {items.map((r, i) => (
             <Reveal key={i} delay={i * 100} className="rounded-3xl border border-white bg-white/90 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
               <Stars />
