@@ -259,6 +259,14 @@ function Hero({ name, phone, city, rating, photo1 }) {
                 Sunați acum
               </a>
               <a
+                href={tel ? `https://wa.me/${tel}` : "#contact"}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#1ebe5d]"
+              >
+                WhatsApp
+              </a>
+              <a
                 href="#servicii"
                 className="rounded-full bg-white/15 px-6 py-3 text-sm font-medium text-white ring-1 ring-white/40 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/25"
               >
