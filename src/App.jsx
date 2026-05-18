@@ -264,12 +264,6 @@ function Hero({ name, phone, city, rating, photo1 }) {
               >
                 Vezi serviciile
               </a>
-              <a
-                href="#servicii"
-                className="rounded-full bg-white/15 px-6 py-3 text-sm font-medium text-white ring-1 ring-white/40 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/25"
-              >
-                Vezi serviciile
-              </a>
             </Reveal>
           </div>
         </div>
