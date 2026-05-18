@@ -326,7 +326,7 @@ function About({ name, about, city, photo2 }) {
   );
 }
 
-function Services({ phone, photo2 }) {
+function Services({ phone, photo4 }) {
   const tel = digits(phone);
   return (
     <section id="servicii" className="px-4 py-20">
