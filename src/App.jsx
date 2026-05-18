@@ -433,11 +433,13 @@ function Standards() {
         <p className="mt-4 text-base text-slate-600">De ce să ne alegi pe noi pentru siguranța ta?</p>
         <div className="mt-10 space-y-5 text-left">
           {items.map((it, i) => (
-            <div key={i} className="rounded-3xl border border-white bg-white/90 p-7 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-              {it.icon}
-              <h3 className="mt-16 text-2xl font-semibold text-ink">{it.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-500">{it.desc}</p>
-            </div>
+            <Reveal key={i} delay={i * 120}>
+              <div className="rounded-3xl border border-white bg-white/90 p-7 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+                {it.icon}
+                <h3 className="mt-16 text-2xl font-semibold text-ink">{it.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-500">{it.desc}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
