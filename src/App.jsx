@@ -419,20 +419,22 @@ function Process({ photo3 }) {
   ];
   return (
     <section className="px-4 py-20">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-          Procesul Nostru de<br />Lucru
-        </h2>
-        <p className="mt-4 text-base text-slate-600">Simplu și eficient pentru confortul tău</p>
+      <div className="mx-auto max-w-6xl">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+            Procesul Nostru de Lucru
+          </h2>
+          <p className="mt-4 text-base text-slate-600">Simplu și eficient pentru confortul tău</p>
+        </div>
         <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
           <SafeImg
             src={photo3}
             fallback={STOCK.process}
             alt="Procesul de lucru"
-            className="h-[300px] w-full rounded-2xl object-cover"
+            className="h-[300px] w-full rounded-2xl object-cover md:h-[460px]"
           />
         </div>
-        <div className="mt-6 space-y-5 text-left">
+        <div className="mt-6 grid grid-cols-1 gap-5 text-left sm:grid-cols-2 md:grid-cols-4">
           {steps.map((s) => (
             <div key={s.n} className="rounded-3xl border border-white bg-white/90 p-7 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">{s.n}</div>
