@@ -57,11 +57,91 @@ function useParallax() {
 }
 
 const STOCK = {
-  hero: "https://images.unsplash.com/photo-1558449907-8b82b0264682?auto=format&fit=crop&w=1400&q=80",
+  hero: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80",
   services: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
   process: "https://images.unsplash.com/photo-1565608087341-404b25492fee?auto=format&fit=crop&w=1200&q=80",
-  about: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
+  about: "https://images.unsplash.com/photo-1521224616346-91bbb3d0138b?auto=format&fit=crop&w=1200&q=80",
 };
+
+function CountUp({ to, suffix = "", duration = 1400 }) {
+  const ref = useRef(null);
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          const start = performance.now();
+          const tick = (t) => {
+            const p = Math.min(1, (t - start) / duration);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setVal(Math.round(to * eased));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to, duration]);
+  return <span ref={ref}>{val}{suffix}</span>;
+}
+
+function LetterReveal({ text, className = "", delay = 0, step = 35 }) {
+  return (
+    <span className={className} aria-label={text}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          className="char"
+          style={{ animationDelay: `${delay + i * step}ms` }}
+        >
+          {ch === " " ? "\u00A0" : ch}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function ScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const total = h.scrollHeight - h.clientHeight;
+      setP(total > 0 ? (h.scrollTop / total) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="fixed left-0 top-0 z-50 h-[3px] w-full bg-transparent">
+      <div className="h-full bg-gradient-to-r from-brand via-indigo-400 to-brand transition-[width] duration-150 ease-out" style={{ width: `${p}%` }} />
+    </div>
+  );
+}
+
+function Marquee({ items }) {
+  const loop = [...items, ...items];
+  return (
+    <div className="overflow-hidden border-y border-white/60 bg-white/40 backdrop-blur">
+      <div className="marquee-track flex w-max gap-12 py-4">
+        {loop.map((it, i) => (
+          <span key={i} className="flex items-center gap-3 whitespace-nowrap text-sm font-medium text-ink/70">
+            <span className="inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+            {it}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function useParams() {
   return useMemo(() => {
@@ -136,28 +216,32 @@ function Hero({ name, phone, city, rating, photo1 }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+          <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-brand/40 blob" />
+          <div className="pointer-events-none absolute -right-24 top-24 h-80 w-80 rounded-full bg-indigo-400/30 blob" style={{ animationDelay: "-4s" }} />
           <div className="relative flex h-full min-h-[560px] md:min-h-[640px] flex-col justify-end p-8 md:p-12">
-            <Reveal as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
-              Electrician<br />profesionist<br />la orice oră
-            </Reveal>
-            <Reveal delay={120} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
+            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+              <LetterReveal text="Electrician" className="block shimmer-text" />
+              <LetterReveal text="profesionist" delay={350} className="block shimmer-text" />
+              <LetterReveal text="la orice oră" delay={750} className="block shimmer-text" />
+            </h1>
+            <Reveal delay={1100} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
               Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri. Certificat și asigurat pentru liniștea dumneavoastră.
               {city ? ` Servim zona ${city} și împrejurimi.` : ""}
             </Reveal>
             {rating ? (
-              <Reveal delay={200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
+              <Reveal delay={1200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
             ) : null}
-            <Reveal delay={260} className="mt-6 flex flex-wrap gap-3">
+            <Reveal delay={1300} className="mt-6 flex flex-wrap gap-3">
               <a
                 href={tel ? `tel:${tel}` : "#contact"}
-                className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-xl"
+                className="pulse-glow rounded-full bg-brand px-6 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-brand-dark"
               >
                 Sunați acum
               </a>
               <a
                 href="#servicii"
-                className="rounded-full bg-brand-soft px-6 py-3 text-sm font-medium text-brand-dark transition hover:-translate-y-0.5 hover:bg-white"
+                className="rounded-full bg-white/15 px-6 py-3 text-sm font-medium text-white ring-1 ring-white/40 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/25"
               >
                 Vezi serviciile
               </a>
@@ -190,11 +274,11 @@ function About({ name, about }) {
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <Reveal delay={220} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-              <p className="text-4xl font-bold tracking-tight text-ink">15+ Ani</p>
+              <p className="text-4xl font-bold tracking-tight text-ink"><CountUp to={15} suffix="+ Ani" /></p>
               <p className="mt-3 text-sm text-slate-500">Experiență pe piață</p>
             </Reveal>
             <Reveal delay={300} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-              <p className="text-4xl font-bold tracking-tight text-ink">5000+</p>
+              <p className="text-4xl font-bold tracking-tight text-ink"><CountUp to={5000} suffix="+" duration={1800} /></p>
               <p className="mt-3 text-sm text-slate-500">Intervenții finalizate</p>
             </Reveal>
           </div>
@@ -550,10 +634,13 @@ export default function App() {
   const p = useParams();
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
       <Navbar name={p.name} phone={p.phone} />
       <Hero name={p.name} phone={p.phone} city={p.city} rating={p.rating} photo1={p.photo1} />
+      <div className="mt-10">
+        <Marquee items={["Autorizați ANRE", "Service 24/7", "Garanție lucrări", "Materiale certificate", "Intervenții rapide", "Echipă verificată"]} />
+      </div>
       <About name={p.name} about={p.about} />
-      
       <Services phone={p.phone} photo2={p.photo2} />
       <Standards />
       <Process photo3={p.photo3} />
