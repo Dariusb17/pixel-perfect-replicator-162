@@ -302,8 +302,8 @@ function About({ name, about }) {
         </div>
         <Reveal delay={120} className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)]">
           <SafeImg
-            src=""
-            fallback={STOCK.about}
+            src={electricianAbout}
+            fallback={electricianAbout}
             alt="Electrician autorizat"
             className="h-[360px] w-full rounded-2xl object-cover md:h-[520px]"
           />
