@@ -169,6 +169,7 @@ function useParams() {
       photo1: get("photo1"),
       photo2: get("photo2"),
       photo3: get("photo3"),
+      photo4: get("photo4"),
     };
   }, []);
 }
@@ -234,8 +235,8 @@ function Hero({ name, phone, city, rating, photo1 }) {
         <div className="relative min-h-[560px] md:min-h-[640px]">
           <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
             <SafeImg
-              src={electricianAbout}
-              fallback={electricianAbout}
+              src={photo1 || electricianHero}
+              fallback={electricianHero}
               alt="Electrician la lucru"
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -274,7 +275,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
   );
 }
 
-function About({ name, about, city }) {
+function About({ name, about, city, photo2 }) {
   const location = city ? (
     <>
       <strong className="font-semibold text-ink">{city}</strong>, România
@@ -314,8 +315,8 @@ function About({ name, about, city }) {
         </div>
         <Reveal delay={120} className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)]">
           <SafeImg
-            src={electricianHero}
-            fallback={electricianHero}
+            src={photo2 || electricianAbout}
+            fallback={electricianAbout}
             alt="Electrician autorizat"
             className="h-[360px] w-full rounded-2xl object-cover md:h-[520px]"
           />
@@ -325,7 +326,7 @@ function About({ name, about, city }) {
   );
 }
 
-function Services({ phone, photo2 }) {
+function Services({ phone, photo4 }) {
   const tel = digits(phone);
   return (
     <section id="servicii" className="px-4 py-20">
@@ -360,13 +361,13 @@ function Services({ phone, photo2 }) {
               { title: "Instalații Electrice", desc: "Execuție instalații noi pentru case și birouri, respectând normele de siguranță.", img: electricianServices },
               { title: "Mentenanță", desc: "Verificări periodice pentru a preveni incidentele și pentru a optimiza consumul.", img: electricianProcess },
               { title: "Automatizări", desc: "Integrare sisteme inteligente pentru controlul iluminatului și eficiență energetică.", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80" },
-              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: electricianUrgent },
+              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: photo4 || electricianUrgent, fallback: electricianUrgent },
               { title: "Iluminat Exterior", desc: "Montaj sisteme de iluminat pentru grădini, fațade și spații comerciale.", img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=80" },
             ].map((s, i) => (
               <div key={i} className="w-[280px] flex-none snap-start overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] md:w-[320px]">
                 <SafeImg
                   src={s.img}
-                  fallback={s.img}
+                  fallback={s.fallback || s.img}
                   alt={s.title}
                   className="h-[220px] w-full rounded-2xl object-cover md:h-[260px]"
                 />
@@ -462,7 +463,7 @@ function Process({ photo3 }) {
         </div>
         <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
           <SafeImg
-            src={electricianProcess}
+            src={photo3 || electricianProcess}
             fallback={electricianProcess}
             alt="Procesul de lucru"
             className="h-[300px] w-full rounded-2xl object-cover md:h-[460px]"
@@ -693,8 +694,8 @@ export default function App() {
       <div className="mt-10">
         <Marquee items={["Autorizați ANRE", "Service 24/7", "Garanție lucrări", "Materiale certificate", "Intervenții rapide", "Echipă verificată"]} />
       </div>
-      <About name={p.name} about={p.about} city={p.city} />
-      <Services phone={p.phone} photo2={p.photo2} />
+      <About name={p.name} about={p.about} city={p.city} photo2={p.photo2} />
+      <Services phone={p.phone} photo4={p.photo4} />
       <Standards />
       <Process photo3={p.photo3} />
       <Reviews name={p.name} reviews={p.reviews} />
