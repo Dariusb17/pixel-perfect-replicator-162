@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import electricianAbout from "@/assets/electrician-about.jpg";
+import electricianProcess from "@/assets/electrician-process.jpg";
 
 function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
   const ref = useRef(null);
