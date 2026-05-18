@@ -57,7 +57,7 @@ function useParallax() {
 }
 
 const STOCK = {
-  hero: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1400&q=80",
+  hero: "https://images.unsplash.com/photo-1558449907-8b82b0264682?auto=format&fit=crop&w=1400&q=80",
   services: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
   process: "https://images.unsplash.com/photo-1565608087341-404b25492fee?auto=format&fit=crop&w=1200&q=80",
   about: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
