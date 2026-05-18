@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import electricianAbout from "@/assets/electrician-about.jpg";
 import electricianProcess from "@/assets/electrician-process.jpg";
 import electricianServices from "@/assets/electrician-services.jpg";
+import electricianUrgent from "@/assets/electrician-urgent.jpg";
 
 function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
   const ref = useRef(null);
@@ -356,7 +357,7 @@ function Services({ phone, photo2 }) {
           <div className="flex snap-x snap-mandatory gap-5">
             {[
               { title: "Instalații Electrice", desc: "Execuție instalații noi pentru case și birouri, respectând normele de siguranță.", img: electricianServices },
-              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=80" },
+              { title: "Reparații Urgente", desc: "Intervenții rapide 24/7 pentru scurtcircuite, tablouri arse sau întreruperi de curent.", img: electricianUrgent },
               { title: "Mentenanță", desc: "Verificări periodice pentru a preveni incidentele și pentru a optimiza consumul.", img: electricianProcess },
               { title: "Automatizări", desc: "Integrare sisteme inteligente pentru controlul iluminatului și eficiență energetică.", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80" },
               { title: "Iluminat Exterior", desc: "Montaj sisteme de iluminat pentru grădini, fațade și spații comerciale.", img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=80" },
