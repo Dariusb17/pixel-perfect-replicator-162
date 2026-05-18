@@ -245,7 +245,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
           <div className="pointer-events-none absolute -right-24 top-24 h-80 w-80 rounded-full bg-indigo-400/30 blob" style={{ animationDelay: "-4s" }} />
           <div className="relative flex h-full min-h-[560px] md:min-h-[640px] flex-col justify-end p-8 md:p-12">
             <Reveal as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
-              Electrician profesionist<br />la orice oră
+              Electrician profesionist
             </Reveal>
             <Reveal delay={1100} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
               Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri{city ? <> în <strong className="font-semibold text-white">{city}</strong></> : null}.
