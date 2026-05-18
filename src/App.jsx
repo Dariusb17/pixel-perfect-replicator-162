@@ -234,8 +234,8 @@ function Hero({ name, phone, city, rating, photo1 }) {
         <div className="relative min-h-[560px] md:min-h-[640px]">
           <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
             <SafeImg
-              src={electricianHero}
-              fallback={electricianHero}
+              src={electricianAbout}
+              fallback={electricianAbout}
               alt="Electrician la lucru"
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -314,8 +314,8 @@ function About({ name, about, city }) {
         </div>
         <Reveal delay={120} className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)]">
           <SafeImg
-            src={electricianAbout}
-            fallback={electricianAbout}
+            src={electricianHero}
+            fallback={electricianHero}
             alt="Electrician autorizat"
             className="h-[360px] w-full rounded-2xl object-cover md:h-[520px]"
           />
