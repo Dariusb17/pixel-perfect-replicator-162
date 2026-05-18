@@ -57,10 +57,10 @@ function useParallax() {
 }
 
 const STOCK = {
-  hero: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80",
+  hero: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1600&q=80",
   services: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
   process: "https://images.unsplash.com/photo-1565608087341-404b25492fee?auto=format&fit=crop&w=1200&q=80",
-  about: "https://images.unsplash.com/photo-1521224616346-91bbb3d0138b?auto=format&fit=crop&w=1200&q=80",
+  about: "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1200&q=80",
 };
 
 function CountUp({ to, suffix = "", duration = 1400 }) {
@@ -536,7 +536,7 @@ function FAQItem({ q, a }) {
 function FAQ({ city }) {
   const faqs = [
     { q: "Interveniți în weekend?", a: "Da, oferim intervenții și în weekend, 24/7 pentru urgențe electrice." },
-    { q: "Ce zone acoperiți?", a: city ? `Acoperim zona ${city} și împrejurimi.` : "Acoperim zona dumneavoastră și împrejurimi." },
+    { q: "Ce zone acoperiți?", a: city ? `Oferim servicii în toată zona ${city}.` : "Oferim servicii în toată zona dumneavoastră." },
     { q: "Oferiți factură?", a: "Da, emitem factură fiscală pentru toate lucrările efectuate." },
   ];
   return (
