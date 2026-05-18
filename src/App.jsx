@@ -495,28 +495,52 @@ function CTA({ phone }) {
 function Footer({ name, phone, address, maps_url, hours }) {
   const tel = digits(phone);
   return (
-    <footer className="px-4 pb-10 pt-6">
-      <div className="mx-auto max-w-3xl rounded-3xl border border-white bg-white/80 p-8 text-sm text-slate-600 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-        <p className="text-lg font-semibold text-ink">{name}</p>
-        <div className="mt-4 space-y-1.5">
-          {phone ? (
-            <p>
-              Telefon: <a href={`tel:${tel}`} className="text-brand hover:underline">{phone}</a>
-            </p>
-          ) : (
-            <p>Telefon: 07xx xxx xxx</p>
-          )}
-          {address ? <p>Adresă: {address}</p> : null}
-          {hours ? <p>Program: {hours}</p> : null}
-          {maps_url ? (
-            <p>
-              <a href={maps_url} target="_blank" rel="noreferrer" className="text-brand hover:underline">
-                Deschide în Google Maps
-              </a>
-            </p>
-          ) : null}
+    <footer className="mt-10 bg-brand text-white">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <p className="text-3xl font-bold tracking-tight">{name}</p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white/70">Servicii</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="#servicii" className="hover:underline">Instalații</a></li>
+              <li><a href="#servicii" className="hover:underline">Mentenanță</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white/70">Contactați-ne</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                {phone ? (
+                  <a href={`tel:${tel}`} className="hover:underline">{phone}</a>
+                ) : (
+                  "07xx xxx xxx"
+                )}
+              </li>
+              {address ? <li>{address}</li> : null}
+              {hours ? <li>{hours}</li> : null}
+              {maps_url ? (
+                <li>
+                  <a href={maps_url} target="_blank" rel="noreferrer" className="hover:underline">
+                    Deschide în Google Maps
+                  </a>
+                </li>
+              ) : null}
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white/70">Companie</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="#despre" className="hover:underline">Despre</a></li>
+              <li><a href="#contact" className="hover:underline">Contact</a></li>
+            </ul>
+          </div>
         </div>
-        <p className="mt-6 text-xs text-slate-400">© {new Date().getFullYear()} {name}. Toate drepturile rezervate.</p>
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/20 pt-6 text-sm text-white/80 sm:flex-row sm:items-center">
+          <p>© {new Date().getFullYear()} | {name}</p>
+          <a href="#" className="hover:underline">Privacy Policy</a>
+        </div>
       </div>
     </footer>
   );
