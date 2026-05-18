@@ -216,28 +216,32 @@ function Hero({ name, phone, city, rating, photo1 }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+          <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-brand/40 blob" />
+          <div className="pointer-events-none absolute -right-24 top-24 h-80 w-80 rounded-full bg-indigo-400/30 blob" style={{ animationDelay: "-4s" }} />
           <div className="relative flex h-full min-h-[560px] md:min-h-[640px] flex-col justify-end p-8 md:p-12">
-            <Reveal as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
-              Electrician<br />profesionist<br />la orice oră
-            </Reveal>
-            <Reveal delay={120} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
+            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+              <LetterReveal text="Electrician" className="block shimmer-text" />
+              <LetterReveal text="profesionist" delay={350} className="block shimmer-text" />
+              <LetterReveal text="la orice oră" delay={750} className="block shimmer-text" />
+            </h1>
+            <Reveal delay={1100} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
               Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri. Certificat și asigurat pentru liniștea dumneavoastră.
               {city ? ` Servim zona ${city} și împrejurimi.` : ""}
             </Reveal>
             {rating ? (
-              <Reveal delay={200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
+              <Reveal delay={1200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
             ) : null}
-            <Reveal delay={260} className="mt-6 flex flex-wrap gap-3">
+            <Reveal delay={1300} className="mt-6 flex flex-wrap gap-3">
               <a
                 href={tel ? `tel:${tel}` : "#contact"}
-                className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-xl"
+                className="pulse-glow rounded-full bg-brand px-6 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-brand-dark"
               >
                 Sunați acum
               </a>
               <a
                 href="#servicii"
-                className="rounded-full bg-brand-soft px-6 py-3 text-sm font-medium text-brand-dark transition hover:-translate-y-0.5 hover:bg-white"
+                className="rounded-full bg-white/15 px-6 py-3 text-sm font-medium text-white ring-1 ring-white/40 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/25"
               >
                 Vezi serviciile
               </a>
