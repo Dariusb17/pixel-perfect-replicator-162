@@ -272,7 +272,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
 function About({ name, about }) {
   const paragraph =
     about ||
-    `${name} oferă servicii electrice complete în România, de la proiectare și execuție până la mentenanță industrială. Cu o echipă de electricieni autorizați ANRE, punem siguranța instalației dumneavoastră pe primul loc.`;
+    `${name} oferă servicii electrice complete în România. Cu o echipă de electricieni autorizați ANRE, punem siguranța instalației dumneavoastră pe primul loc.`;
   return (
     <section id="despre" className="px-4 py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
