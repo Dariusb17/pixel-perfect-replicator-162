@@ -174,42 +174,39 @@ function About({ name, about }) {
     about ||
     `${name} oferă servicii electrice complete în România, de la proiectare și execuție până la mentenanță industrială. Cu o echipă de electricieni autorizați ANRE, punem siguranța instalației dumneavoastră pe primul loc.`;
   return (
-    <section className="px-4 py-20">
-      <div className="mx-auto max-w-3xl">
-        <span className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-ink shadow-sm">
-          Despre Noi
-        </span>
-        <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-          Experiență și<br />Siguranță în<br />Fiecare Conexiune
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-slate-600">{paragraph}</p>
-        <div className="mt-8 space-y-4">
-          <div className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-            <p className="text-4xl font-bold tracking-tight text-ink">15+ Ani</p>
-            <p className="mt-3 text-sm text-slate-500">Experiență pe piață</p>
-          </div>
-          <div className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-            <p className="text-4xl font-bold tracking-tight text-ink">5000+</p>
-            <p className="mt-3 text-sm text-slate-500">Intervenții finalizate</p>
+    <section id="despre" className="px-4 py-20">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+        <div>
+          <Reveal>
+            <span className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-ink shadow-sm">
+              Despre Noi
+            </span>
+          </Reveal>
+          <Reveal as="h2" delay={80} className="mt-6 text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+            Experiență și Siguranță în Fiecare Conexiune
+          </Reveal>
+          <Reveal as="p" delay={160} className="mt-6 max-w-xl text-base leading-relaxed text-slate-600">
+            {paragraph}
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <Reveal delay={220} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+              <p className="text-4xl font-bold tracking-tight text-ink">15+ Ani</p>
+              <p className="mt-3 text-sm text-slate-500">Experiență pe piață</p>
+            </Reveal>
+            <Reveal delay={300} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+              <p className="text-4xl font-bold tracking-tight text-ink">5000+</p>
+              <p className="mt-3 text-sm text-slate-500">Intervenții finalizate</p>
+            </Reveal>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function AboutPhoto() {
-  return (
-    <section className="px-4 pb-10">
-      <div className="mx-auto max-w-3xl">
-        <div className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+        <Reveal delay={120} className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)]">
           <SafeImg
             src=""
             fallback={STOCK.about}
             alt="Electrician autorizat"
-            className="h-[360px] w-full rounded-2xl object-cover md:h-[440px]"
+            className="h-[360px] w-full rounded-2xl object-cover md:h-[520px]"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -532,7 +529,7 @@ export default function App() {
       <Navbar name={p.name} phone={p.phone} />
       <Hero name={p.name} phone={p.phone} city={p.city} rating={p.rating} photo1={p.photo1} />
       <About name={p.name} about={p.about} />
-      <AboutPhoto />
+      
       <Services phone={p.phone} photo2={p.photo2} />
       <Standards />
       <Process photo3={p.photo3} />
