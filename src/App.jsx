@@ -186,10 +186,29 @@ function SafeImg({ src, fallback, alt, className }) {
 
 function Navbar({ name, phone }) {
   const tel = digits(phone);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <div className="sticky top-4 z-40 px-4">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between rounded-2xl border border-white/60 bg-white/90 px-5 py-3 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur">
+      <nav
+        className={`mx-auto flex max-w-5xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-300 ${
+          scrolled
+            ? "border border-white/40 bg-white/40 shadow-[0_10px_40px_rgba(15,23,42,0.10)] backdrop-blur-xl backdrop-saturate-150"
+            : "border border-white/70 bg-white/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur"
+        }`}
+      >
         <span className="text-lg font-semibold tracking-tight text-ink">{name}</span>
+        <div className="hidden gap-7 text-sm font-medium text-ink/80 md:flex">
+          <a href="#servicii" className="hover:text-brand transition">Servicii</a>
+          <a href="#despre" className="hover:text-brand transition">Despre</a>
+          <a href="#recenzii" className="hover:text-brand transition">Recenzii</a>
+          <a href="#contact" className="hover:text-brand transition">Contact</a>
+        </div>
         <a
           href={tel ? `tel:${tel}` : "#contact"}
           className="rounded-full bg-brand px-5 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-dark"
@@ -220,11 +239,9 @@ function Hero({ name, phone, city, rating, photo1 }) {
           <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-brand/40 blob" />
           <div className="pointer-events-none absolute -right-24 top-24 h-80 w-80 rounded-full bg-indigo-400/30 blob" style={{ animationDelay: "-4s" }} />
           <div className="relative flex h-full min-h-[560px] md:min-h-[640px] flex-col justify-end p-8 md:p-12">
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
-              <LetterReveal text="Electrician" className="block shimmer-text" />
-              <LetterReveal text="profesionist" delay={350} className="block shimmer-text" />
-              <LetterReveal text="la orice oră" delay={750} className="block shimmer-text" />
-            </h1>
+            <Reveal as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+              Electrician profesionist<br />la orice oră
+            </Reveal>
             <Reveal delay={1100} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
               Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri. Certificat și asigurat pentru liniștea dumneavoastră.
               {city ? ` Servim zona ${city} și împrejurimi.` : ""}
