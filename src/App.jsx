@@ -274,11 +274,11 @@ function About({ name, about }) {
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <Reveal delay={220} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-              <p className="text-4xl font-bold tracking-tight text-ink">15+ Ani</p>
+              <p className="text-4xl font-bold tracking-tight text-ink"><CountUp to={15} suffix="+ Ani" /></p>
               <p className="mt-3 text-sm text-slate-500">Experiență pe piață</p>
             </Reveal>
             <Reveal delay={300} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-              <p className="text-4xl font-bold tracking-tight text-ink">5000+</p>
+              <p className="text-4xl font-bold tracking-tight text-ink"><CountUp to={5000} suffix="+" duration={1800} /></p>
               <p className="mt-3 text-sm text-slate-500">Intervenții finalizate</p>
             </Reveal>
           </div>
@@ -634,10 +634,13 @@ export default function App() {
   const p = useParams();
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
       <Navbar name={p.name} phone={p.phone} />
       <Hero name={p.name} phone={p.phone} city={p.city} rating={p.rating} photo1={p.photo1} />
+      <div className="mt-10">
+        <Marquee items={["Autorizați ANRE", "Service 24/7", "Garanție lucrări", "Materiale certificate", "Intervenții rapide", "Echipă verificată"]} />
+      </div>
       <About name={p.name} about={p.about} />
-      
       <Services phone={p.phone} photo2={p.photo2} />
       <Standards />
       <Process photo3={p.photo3} />
