@@ -57,11 +57,91 @@ function useParallax() {
 }
 
 const STOCK = {
-  hero: "https://images.unsplash.com/photo-1558449907-8b82b0264682?auto=format&fit=crop&w=1400&q=80",
+  hero: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80",
   services: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
   process: "https://images.unsplash.com/photo-1565608087341-404b25492fee?auto=format&fit=crop&w=1200&q=80",
-  about: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
+  about: "https://images.unsplash.com/photo-1521224616346-91bbb3d0138b?auto=format&fit=crop&w=1200&q=80",
 };
+
+function CountUp({ to, suffix = "", duration = 1400 }) {
+  const ref = useRef(null);
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          const start = performance.now();
+          const tick = (t) => {
+            const p = Math.min(1, (t - start) / duration);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setVal(Math.round(to * eased));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to, duration]);
+  return <span ref={ref}>{val}{suffix}</span>;
+}
+
+function LetterReveal({ text, className = "", delay = 0, step = 35 }) {
+  return (
+    <span className={className} aria-label={text}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          className="char"
+          style={{ animationDelay: `${delay + i * step}ms` }}
+        >
+          {ch === " " ? "\u00A0" : ch}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function ScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const total = h.scrollHeight - h.clientHeight;
+      setP(total > 0 ? (h.scrollTop / total) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="fixed left-0 top-0 z-50 h-[3px] w-full bg-transparent">
+      <div className="h-full bg-gradient-to-r from-brand via-indigo-400 to-brand transition-[width] duration-150 ease-out" style={{ width: `${p}%` }} />
+    </div>
+  );
+}
+
+function Marquee({ items }) {
+  const loop = [...items, ...items];
+  return (
+    <div className="overflow-hidden border-y border-white/60 bg-white/40 backdrop-blur">
+      <div className="marquee-track flex w-max gap-12 py-4">
+        {loop.map((it, i) => (
+          <span key={i} className="flex items-center gap-3 whitespace-nowrap text-sm font-medium text-ink/70">
+            <span className="inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+            {it}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function useParams() {
   return useMemo(() => {
