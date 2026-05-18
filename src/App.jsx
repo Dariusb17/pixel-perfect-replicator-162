@@ -601,18 +601,21 @@ function CTA({ phone }) {
   return (
     <section id="contact" className="px-4 py-16">
       <div className="mx-auto max-w-3xl">
-        <div className="relative overflow-hidden rounded-3xl border border-white bg-white/95 p-10 text-center shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)]">
-          <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_30%_20%,#dbeafe,transparent_60%),radial-gradient(circle_at_80%_80%,#ede9fe,transparent_60%)]" />
+        <div className="group relative overflow-hidden rounded-3xl border border-white bg-white/95 p-10 text-center shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)] transition-all duration-500 hover:-translate-y-2 hover:border-brand/30 hover:shadow-[0_30px_70px_-20px_rgba(37,99,235,0.35)]">
+          <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_30%_20%,#dbeafe,transparent_60%),radial-gradient(circle_at_80%_80%,#ede9fe,transparent_60%)] transition-opacity duration-500 group-hover:opacity-0" />
+          <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_30%_20%,#bfdbfe,transparent_55%),radial-gradient(circle_at_80%_80%,#c7d2fe,transparent_55%),radial-gradient(circle_at_50%_120%,#a5b4fc,transparent_60%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gradient-to-br from-brand to-indigo-500 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-30" />
+          <div className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-gradient-to-tr from-indigo-400 to-brand opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-25" />
           <div className="relative">
-            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-ink shadow-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-ink shadow-sm transition-all duration-500 group-hover:border-brand/30 group-hover:text-brand-dark group-hover:shadow-md">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5"><path d="M22 16.92V21a1 1 0 01-1.11 1A19.79 19.79 0 012 4.11 1 1 0 013 3h4.09a1 1 0 011 .75l1 4a1 1 0 01-.29 1L7 10.5a16 16 0 006.5 6.5l1.75-1.75a1 1 0 011-.29l4 1a1 1 0 01.75 1z" /></svg>
               Contactați-ne
             </span>
-            <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+            <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-ink transition-colors duration-500 group-hover:text-brand-dark md:text-5xl">
               Ai o urgență<br />electrică?
             </h2>
             <p className="mx-auto mt-4 max-w-md text-base text-slate-600">
-              Suntem pregătiți să intervenim rapid pentru a-ți asigura confortul și siguranța.
+              Suntem pregătiți să intervenim rapid pentru a-ți rezolva problema.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <a
