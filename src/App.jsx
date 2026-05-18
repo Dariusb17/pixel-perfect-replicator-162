@@ -463,7 +463,7 @@ function Process({ photo3 }) {
         </div>
         <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
           <SafeImg
-            src={electricianProcess}
+            src={photo3 || electricianProcess}
             fallback={electricianProcess}
             alt="Procesul de lucru"
             className="h-[300px] w-full rounded-2xl object-cover md:h-[460px]"
