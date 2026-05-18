@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import electricianAbout from "@/assets/electrician-about.jpg";
 import electricianProcess from "@/assets/electrician-process.jpg";
+import electricianServices from "@/assets/electrician-services.jpg";
 
 function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
   const ref = useRef(null);
@@ -335,8 +336,8 @@ function Services({ phone, photo2 }) {
         </div>
         <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
           <SafeImg
-            src={photo2}
-            fallback={STOCK.services}
+            src={electricianServices}
+            fallback={electricianServices}
             alt="Instalații electrice"
             className="h-[300px] w-full rounded-2xl object-cover"
           />
