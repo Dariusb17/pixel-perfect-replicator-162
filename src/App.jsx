@@ -1,4 +1,60 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setShown(true);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <Tag
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out will-change-transform ${
+        shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      } ${className}`}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function useParallax() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const progress = 1 - (rect.top + rect.height / 2) / vh;
+        el.style.transform = `translate3d(0, ${progress * -40}px, 0) scale(${1 + Math.max(0, progress) * 0.05})`;
+        raf = 0;
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return ref;
+}
 
 const STOCK = {
   hero: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1400&q=80",
@@ -67,42 +123,45 @@ function Navbar({ name, phone }) {
 
 function Hero({ name, phone, city, rating, photo1 }) {
   const tel = digits(phone);
+  const parallaxRef = useParallax();
   return (
     <section className="px-4 pt-6">
       <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/60 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.25)]">
         <div className="relative min-h-[560px] md:min-h-[640px]">
-          <SafeImg
-            src={photo1}
-            fallback={STOCK.hero}
-            alt="Electrician la lucru"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
+            <SafeImg
+              src={photo1}
+              fallback={STOCK.hero}
+              alt="Electrician la lucru"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
           <div className="relative flex h-full min-h-[560px] md:min-h-[640px] flex-col justify-end p-8 md:p-12">
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+            <Reveal as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
               Electrician<br />profesionist<br />la orice oră
-            </h1>
-            <p className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
+            </Reveal>
+            <Reveal delay={120} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
               Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri. Certificat și asigurat pentru liniștea dumneavoastră.
               {city ? ` Servim zona ${city} și împrejurimi.` : ""}
-            </p>
+            </Reveal>
             {rating ? (
-              <p className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</p>
+              <Reveal delay={200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
             ) : null}
-            <div className="mt-6 flex flex-wrap gap-3">
+            <Reveal delay={260} className="mt-6 flex flex-wrap gap-3">
               <a
                 href={tel ? `tel:${tel}` : "#contact"}
-                className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-brand-dark"
+                className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-xl"
               >
                 Sunați acum
               </a>
               <a
                 href="#servicii"
-                className="rounded-full bg-brand-soft px-6 py-3 text-sm font-medium text-brand-dark transition hover:bg-white"
+                className="rounded-full bg-brand-soft px-6 py-3 text-sm font-medium text-brand-dark transition hover:-translate-y-0.5 hover:bg-white"
               >
                 Vezi serviciile
               </a>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -304,36 +363,52 @@ function Stars() {
 
 function Reviews({ name, reviews }) {
   const items = [
-    { text: "Promptitudine și profesionalism. Au rezolvat scurtcircuitul în 30 de minute.", who: "Ion Popescu", role: "Proprietar casă" },
-    { text: "Mentenanța anuală la birouri a fost realizată impecabil și conform normelor.", who: "Maria Ionescu", role: "Manager firmă" },
-    { text: "Colaborez cu ei la proiecte rezidențiale de lux. Execuție perfectă.", who: "Andrei Dobre", role: "Architect" },
+    {
+      text: "Promptitudine și profesionalism. Au rezolvat scurtcircuitul în 30 de minute.",
+      who: "Ion Popescu",
+      role: "Proprietar casă",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+    },
+    {
+      text: "Mentenanța anuală la birouri a fost realizată impecabil și conform normelor.",
+      who: "Maria Ionescu",
+      role: "Manager firmă",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+    },
+    {
+      text: "Colaborez cu ei la proiecte rezidențiale de lux. Execuție perfectă.",
+      who: "Andrei Dobre",
+      role: "Architect",
+      avatar: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=facearea&facepad=2&w=160&h=160&q=80",
+    },
   ];
   return (
     <section className="px-4 py-20">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+        <Reveal as="h2" className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
           Ce spun clienții<br />noștri
-        </h2>
-        <p className="mx-auto mt-4 max-w-md text-base text-slate-600">
+        </Reveal>
+        <Reveal delay={120} as="p" className="mx-auto mt-4 max-w-md text-base text-slate-600">
           Peste {reviews} de clienți mulțumiți de serviciile {name}.
-        </p>
+        </Reveal>
         <div className="mt-10 space-y-5 text-left">
           {items.map((r, i) => (
-            <div key={i} className="rounded-3xl border border-white bg-white/90 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+            <Reveal key={i} delay={i * 100} className="rounded-3xl border border-white bg-white/90 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
               <Stars />
               <p className="mt-4 text-sm leading-relaxed text-slate-600">{r.text}</p>
               <div className="mt-5 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                    <path d="M7 7h4v4H8c0 2 1 3 3 3v2c-3 0-5-2-5-5V7zm8 0h4v4h-3c0 2 1 3 3 3v2c-3 0-5-2-5-5V7z" />
-                  </svg>
-                </div>
+                <SafeImg
+                  src={r.avatar}
+                  fallback={r.avatar}
+                  alt={r.who}
+                  className="h-11 w-11 rounded-full object-cover ring-2 ring-white shadow-sm"
+                />
                 <div>
                   <p className="text-sm font-semibold text-ink">{r.who}</p>
                   <p className="text-xs text-slate-500">{r.role}</p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
