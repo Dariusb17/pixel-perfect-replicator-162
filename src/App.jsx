@@ -246,7 +246,7 @@ function Hero({ name, phone, city, rating, photo1 }) {
               Electrician profesionist<br />la orice oră
             </Reveal>
             <Reveal delay={1100} as="p" className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
-              Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri{city ? ` în ${city}` : ""}.
+              Instalații sigure, reparații rapide, și service 24/7 pentru locuințe și afaceri{city ? <> în <strong className="font-semibold text-white">{city}</strong></> : null}.
             </Reveal>
             {rating ? (
               <Reveal delay={1200} as="p" className="mt-3 text-sm text-white/90">★ {rating} pe Google · {name}</Reveal>
