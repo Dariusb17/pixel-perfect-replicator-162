@@ -661,7 +661,7 @@ export default function App() {
       <div className="mt-10">
         <Marquee items={["Autorizați ANRE", "Service 24/7", "Garanție lucrări", "Materiale certificate", "Intervenții rapide", "Echipă verificată"]} />
       </div>
-      <About name={p.name} about={p.about} />
+      <About name={p.name} about={p.about} city={p.city} />
       <Services phone={p.phone} photo2={p.photo2} />
       <Standards />
       <Process photo3={p.photo3} />
