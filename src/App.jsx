@@ -272,10 +272,14 @@ function Hero({ name, phone, city, rating, photo1 }) {
   );
 }
 
-function About({ name, about }) {
-  const paragraph =
-    about ||
-    `${name} oferă servicii electrice complete în România. Cu o echipă de electricieni autorizați ANRE, punem siguranța instalației dumneavoastră pe primul loc.`;
+function About({ name, about, city }) {
+  const location = city ? (
+    <>
+      <strong className="font-semibold text-ink">{city}</strong>, România
+    </>
+  ) : (
+    "România"
+  );
   return (
     <section id="despre" className="px-4 py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
@@ -289,7 +293,11 @@ function About({ name, about }) {
             Experiență și Siguranță în Fiecare Conexiune
           </Reveal>
           <Reveal as="p" delay={160} className="mt-6 max-w-xl text-base leading-relaxed text-slate-600">
-            {paragraph}
+            {about || (
+              <>
+                {name} oferă servicii electrice complete în {location}. Cu o echipă de electricieni autorizați ANRE, punem siguranța instalației dumneavoastră pe primul loc.
+              </>
+            )}
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <Reveal delay={220} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
@@ -661,7 +669,7 @@ export default function App() {
       <div className="mt-10">
         <Marquee items={["Autorizați ANRE", "Service 24/7", "Garanție lucrări", "Materiale certificate", "Intervenții rapide", "Echipă verificată"]} />
       </div>
-      <About name={p.name} about={p.about} />
+      <About name={p.name} about={p.about} city={p.city} />
       <Services phone={p.phone} photo2={p.photo2} />
       <Standards />
       <Process photo3={p.photo3} />
