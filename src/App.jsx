@@ -517,7 +517,7 @@ function Reviews({ name, reviews }) {
     },
   ];
   return (
-    <section className="px-4 py-20">
+    <section id="recenzii" className="px-4 py-20">
       <div className="mx-auto max-w-6xl text-center">
         <Reveal as="h2" className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
           Ce spun clienții noștri
