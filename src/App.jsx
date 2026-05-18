@@ -57,10 +57,10 @@ function useParallax() {
 }
 
 const STOCK = {
-  hero: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80",
+  hero: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1600&q=80",
   services: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
   process: "https://images.unsplash.com/photo-1565608087341-404b25492fee?auto=format&fit=crop&w=1200&q=80",
-  about: "https://images.unsplash.com/photo-1521224616346-91bbb3d0138b?auto=format&fit=crop&w=1200&q=80",
+  about: "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1200&q=80",
 };
 
 function CountUp({ to, suffix = "", duration = 1400 }) {
