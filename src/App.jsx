@@ -367,7 +367,7 @@ function Services({ phone, photo4 }) {
               <div key={i} className="w-[280px] flex-none snap-start overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] md:w-[320px]">
                 <SafeImg
                   src={s.img}
-                  fallback={s.img}
+                  fallback={s.fallback || s.img}
                   alt={s.title}
                   className="h-[220px] w-full rounded-2xl object-cover md:h-[260px]"
                 />
