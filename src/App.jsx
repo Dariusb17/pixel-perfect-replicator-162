@@ -57,7 +57,7 @@ function useParallax() {
 }
 
 const STOCK = {
-  hero: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1400&q=80",
+  hero: "https://images.unsplash.com/photo-1558449907-8b82b0264682?auto=format&fit=crop&w=1400&q=80",
   services: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
   process: "https://images.unsplash.com/photo-1565608087341-404b25492fee?auto=format&fit=crop&w=1200&q=80",
   about: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
@@ -174,42 +174,39 @@ function About({ name, about }) {
     about ||
     `${name} oferă servicii electrice complete în România, de la proiectare și execuție până la mentenanță industrială. Cu o echipă de electricieni autorizați ANRE, punem siguranța instalației dumneavoastră pe primul loc.`;
   return (
-    <section className="px-4 py-20">
-      <div className="mx-auto max-w-3xl">
-        <span className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-ink shadow-sm">
-          Despre Noi
-        </span>
-        <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-          Experiență și<br />Siguranță în<br />Fiecare Conexiune
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-slate-600">{paragraph}</p>
-        <div className="mt-8 space-y-4">
-          <div className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-            <p className="text-4xl font-bold tracking-tight text-ink">15+ Ani</p>
-            <p className="mt-3 text-sm text-slate-500">Experiență pe piață</p>
-          </div>
-          <div className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-            <p className="text-4xl font-bold tracking-tight text-ink">5000+</p>
-            <p className="mt-3 text-sm text-slate-500">Intervenții finalizate</p>
+    <section id="despre" className="px-4 py-20">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+        <div>
+          <Reveal>
+            <span className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-ink shadow-sm">
+              Despre Noi
+            </span>
+          </Reveal>
+          <Reveal as="h2" delay={80} className="mt-6 text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
+            Experiență și Siguranță în Fiecare Conexiune
+          </Reveal>
+          <Reveal as="p" delay={160} className="mt-6 max-w-xl text-base leading-relaxed text-slate-600">
+            {paragraph}
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <Reveal delay={220} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+              <p className="text-4xl font-bold tracking-tight text-ink">15+ Ani</p>
+              <p className="mt-3 text-sm text-slate-500">Experiență pe piață</p>
+            </Reveal>
+            <Reveal delay={300} className="rounded-2xl border border-white bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+              <p className="text-4xl font-bold tracking-tight text-ink">5000+</p>
+              <p className="mt-3 text-sm text-slate-500">Intervenții finalizate</p>
+            </Reveal>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function AboutPhoto() {
-  return (
-    <section className="px-4 pb-10">
-      <div className="mx-auto max-w-3xl">
-        <div className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+        <Reveal delay={120} className="overflow-hidden rounded-3xl border border-white bg-white/80 p-2 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)]">
           <SafeImg
             src=""
             fallback={STOCK.about}
             alt="Electrician autorizat"
-            className="h-[360px] w-full rounded-2xl object-cover md:h-[440px]"
+            className="h-[360px] w-full rounded-2xl object-cover md:h-[520px]"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -498,28 +495,52 @@ function CTA({ phone }) {
 function Footer({ name, phone, address, maps_url, hours }) {
   const tel = digits(phone);
   return (
-    <footer className="px-4 pb-10 pt-6">
-      <div className="mx-auto max-w-3xl rounded-3xl border border-white bg-white/80 p-8 text-sm text-slate-600 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-        <p className="text-lg font-semibold text-ink">{name}</p>
-        <div className="mt-4 space-y-1.5">
-          {phone ? (
-            <p>
-              Telefon: <a href={`tel:${tel}`} className="text-brand hover:underline">{phone}</a>
-            </p>
-          ) : (
-            <p>Telefon: 07xx xxx xxx</p>
-          )}
-          {address ? <p>Adresă: {address}</p> : null}
-          {hours ? <p>Program: {hours}</p> : null}
-          {maps_url ? (
-            <p>
-              <a href={maps_url} target="_blank" rel="noreferrer" className="text-brand hover:underline">
-                Deschide în Google Maps
-              </a>
-            </p>
-          ) : null}
+    <footer className="mt-10 bg-brand text-white">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <p className="text-3xl font-bold tracking-tight">{name}</p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white/70">Servicii</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="#servicii" className="hover:underline">Instalații</a></li>
+              <li><a href="#servicii" className="hover:underline">Mentenanță</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white/70">Contactați-ne</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                {phone ? (
+                  <a href={`tel:${tel}`} className="hover:underline">{phone}</a>
+                ) : (
+                  "07xx xxx xxx"
+                )}
+              </li>
+              {address ? <li>{address}</li> : null}
+              {hours ? <li>{hours}</li> : null}
+              {maps_url ? (
+                <li>
+                  <a href={maps_url} target="_blank" rel="noreferrer" className="hover:underline">
+                    Deschide în Google Maps
+                  </a>
+                </li>
+              ) : null}
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white/70">Companie</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li><a href="#despre" className="hover:underline">Despre</a></li>
+              <li><a href="#contact" className="hover:underline">Contact</a></li>
+            </ul>
+          </div>
         </div>
-        <p className="mt-6 text-xs text-slate-400">© {new Date().getFullYear()} {name}. Toate drepturile rezervate.</p>
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/20 pt-6 text-sm text-white/80 sm:flex-row sm:items-center">
+          <p>© {new Date().getFullYear()} | {name}</p>
+          <a href="#" className="hover:underline">Privacy Policy</a>
+        </div>
       </div>
     </footer>
   );
@@ -532,7 +553,7 @@ export default function App() {
       <Navbar name={p.name} phone={p.phone} />
       <Hero name={p.name} phone={p.phone} city={p.city} rating={p.rating} photo1={p.photo1} />
       <About name={p.name} about={p.about} />
-      <AboutPhoto />
+      
       <Services phone={p.phone} photo2={p.photo2} />
       <Standards />
       <Process photo3={p.photo3} />
