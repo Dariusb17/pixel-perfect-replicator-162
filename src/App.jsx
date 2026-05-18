@@ -342,12 +342,20 @@ function Services({ phone, photo2 }) {
         <p className="mx-auto mt-4 max-w-xl text-base text-slate-600">
           Soluții profesionale pentru orice problemă electrică, rezidențială sau comercială.
         </p>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a
             href={tel ? `tel:${tel}` : "#contact"}
             className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-brand-dark"
           >
             Contactați-ne
+          </a>
+          <a
+            href={tel ? `https://wa.me/${tel}` : "#contact"}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white shadow-lg transition hover:bg-[#1ebe5d]"
+          >
+            WhatsApp
           </a>
         </div>
         <div className="mt-10 overflow-hidden rounded-3xl border border-white bg-white/90 p-3 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
